@@ -1,5 +1,7 @@
-import 'package:animations/screens/animation_change_dimensions.dart';
-import 'package:animations/screens/otra.dart';
+import 'package:animations/animations/animation_posicioned.dart';
+import 'package:animations/screens/animation_scroll.dart';
+// import 'package:animations/screens/animation_scroll.dart';
+
 import 'package:flutter/material.dart';
 
 void main(){
@@ -14,7 +16,8 @@ class MyApp extends StatelessWidget{
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: AnimationChangeDimensions(),
-      home: Otra(),
+      //  home: AnimationScroll(),
+      home: SafeArea(child: AnimationPosicioned()),
     );
   }
 }
