@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       // home: AnimationChangeDimensions(),
       //  home: AnimationScroll(),
-      home: SafeArea(child: AnimationPosicioned()),
+       home: SafeArea(child: AnimationPosicioned()),
     );
   }
 }

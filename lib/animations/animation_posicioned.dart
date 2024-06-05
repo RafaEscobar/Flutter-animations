@@ -13,7 +13,7 @@ class AnimationPosicioned extends StatefulWidget {
 
 class _AnimationPosicionedState extends State < AnimationPosicioned > {
   late ScrollController _scrollController;
-  double _topHeight = 200.0;
+  double _topHeight = 280.0;
 
   @override
   void initState() {
@@ -21,7 +21,10 @@ class _AnimationPosicionedState extends State < AnimationPosicioned > {
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       setState(() {
-        _topHeight = 200;
+          _topHeight = (_scrollController.offset < 0) ?
+            280 :
+            280 - _scrollController.offset;
+          if (_topHeight < 120) _topHeight = 120;
       });
     });
   }
@@ -35,7 +38,16 @@ class _AnimationPosicionedState extends State < AnimationPosicioned > {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // AnimatedPositioned animates changes to a widget's position within a Stack
+    double scale = (_topHeight - 100) / 200;
+    double translationX = (_topHeight -280)/1.2;
+    double translationY = (_topHeight - 280)/4;
+    double translationXI = ((_topHeight-280))/3.5;
+    double translationYI = ((_topHeight-280))/6;
+    double translationXII = ((_topHeight-280))/3.5;
+    double translationYII = ((_topHeight-280))/3.5;
+    double translationXIII = ((_topHeight-280))/3.5;
+    double translationYIII = ((_topHeight-280))/3.3;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -47,29 +59,45 @@ class _AnimationPosicionedState extends State < AnimationPosicioned > {
             child: Container(
               width: size.width,
               color: Colors.blue,
-              child: const Column(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.monetization_on_outlined,
-                    size: 40,
-                  ),
-                  SizedBox(height: 20, ),
-                  Text(
-                    '¡Gracias por tu pago!',
-                    style: TextStyle(
-                      fontSize: 12
-                    ),
-                  ),
-                  Text('\$300.00', style: TextStyle(
-                    fontSize: 45
-                  ), ),
-                  Text(
-                    'Folio: XDCFVGBJHKK',
-                    style: TextStyle(
-                      fontSize: 12
+                  Transform.translate(
+                    offset: Offset(translationX, -translationY),
+                    child: const  Icon(
+                      Icons.monetization_on_outlined,
+                      size: 40,
                     ),
                   ),
 
+                  Transform.translate(
+                    offset: Offset(translationXI, translationYI),
+                    child: const Text(
+                      '¡Gracias por tu pago!',
+                      style: TextStyle(
+                        fontSize: 12
+                      ),
+                    ),
+                  ),
+                  Transform.scale(
+                    scale: 1 - 0.3 * (1 - scale),
+                    child: Transform.translate(
+                      offset: Offset(translationXIII, translationYIII),
+                      child: const Text('\$3001.00', style: TextStyle(
+                        fontSize: 45
+                      ), ),
+                    )
+                  ),
+                  Transform.translate(
+                    offset: Offset(translationXII, translationYII),
+                    child: const Text(
+                      'Folio: XDCFVGBJHKK',
+                      style: TextStyle(
+                        fontSize: 12
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )
@@ -79,8 +107,9 @@ class _AnimationPosicionedState extends State < AnimationPosicioned > {
             right: 0,
             bottom: 0,
             top: _topHeight,
-            child: const SingleChildScrollView(
-              child: Contenido(),
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: const Contenido(),
             )
           ),
         ],
