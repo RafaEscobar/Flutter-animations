@@ -41,12 +41,12 @@ class _AnimationPosicionedState extends State < AnimationPosicioned > {
     double scale = (_topHeight - 100) / 200;
     double translationX = (_topHeight -280)/1.2;
     double translationY = (_topHeight - 280)/4;
-    double translationXI = ((_topHeight-280))/3.5;
-    double translationYI = ((_topHeight-280))/6;
-    double translationXII = ((_topHeight-280))/3.5;
-    double translationYII = ((_topHeight-280))/3.5;
-    double translationXIII = ((_topHeight-280))/3.5;
-    double translationYIII = ((_topHeight-280))/3.3;
+    double translationXI = ((_topHeight-280))/3.8;
+    double translationYI = ((_topHeight-280))/4;
+    double translationXII = ((_topHeight-280))/4;
+    double translationYII = ((_topHeight-280))/2.7;
+    double translationXIII = ((_topHeight-280))/3.8;
+    double translationYIII = ((_topHeight-280))/2.4;
 
     return Scaffold(
       body: Stack(
@@ -70,7 +70,7 @@ class _AnimationPosicionedState extends State < AnimationPosicioned > {
                       size: 40,
                     ),
                   ),
-
+                  const SizedBox(height: 20,),
                   Transform.translate(
                     offset: Offset(translationXI, translationYI),
                     child: const Text(
